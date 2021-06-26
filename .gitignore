@@ -1,4 +1,5 @@
-ngrok.exe
-requirements.docx
-db.sqlite3
-.dccache
+*.exe
+*.docx
+*.sqlite3
+*.dccache
+.vscode
