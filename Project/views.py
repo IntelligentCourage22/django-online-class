@@ -2,6 +2,11 @@ from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib import messages
 from .db_operations import *
 from django.http import Http404
+"""git init
+git add README.md
+git commit -m "first commit"
+git remote add origin 
+git push -u origin master"""
 
 
 def Signup_student(request):
@@ -69,60 +74,78 @@ def signup_group(request, groupname):
 
 
 def admin_login(request):
-    groupnames = group_name()
-    groupdesc = group_desc()
-    groupid = group_id()
-    grouptime = group_time()
-    groupday = group_day()
-    return render(request, 'admin_login.html', context={"gn": groupnames, "gd": groupdesc, "gi": groupid, "gt": grouptime, "gday": groupday})
+    if 'user' in request.session and request.session['user'] == 'himani.bhatnagar@gmail.com':
+        groupnames = group_name()
+        groupdesc = group_desc()
+        groupid = group_id()
+        grouptime = group_time()
+        groupday = group_day()
+        return render(request, 'admin_login.html', context={"gn": groupnames, "gd": groupdesc, "gi": groupid, "gt": grouptime, "gday": groupday})
+    else:
+        raise Http404
 
 
 def admin(request):
-    if request.method == 'POST':
-        email = request.POST['email']
-        password = request.POST['password']
-        confirm = login_teacher(password=password, email=email)
-        if confirm == True:
-            return HttpResponseRedirect("/admin_login")
+    if not 'user' in request.session:
+        if request.method == 'POST':
+            email = request.POST['email']
+            password = request.POST['password']
+            confirm = login_teacher(password=password, email=email)
+            if confirm == True:
+                request.session['user'] = email
+                return HttpResponseRedirect("/admin_login")
+            else:
+                messages.info(request, 'Invalid credentials')
+                return redirect("/admin")
         else:
-            messages.info(request, 'Invalid credentials')
-            return redirect("/admin")
+            return render(request, 'admin.html')
     else:
-        return render(request, 'admin.html')
+        raise Http404
 
 
 def group_list(request):
-    if request.method == 'POST':
-        groupname = request.POST['group']
-        return redirect('student_list', groupname)
+    if 'user' in request.session and request.session['user'] == 'himani.bhatnagar@gmail.com':
+        if request.method == 'POST':
+            groupname = request.POST['group']
+            return redirect('student_list', groupname)
+        else:
+            groups = group_name()
+            return render(request, 'group_list.html', context={"gn": groups})
     else:
-        groups = group_name()
-        return render(request, 'group_list.html', context={"gn": groups})
+        raise Http404
 
 
 def student_list(request, groupname):
-    if request.method == 'POST':
-        gid = request.POST.getlist('groupid')
-        print(gid)
-        return HttpResponseRedirect('/student_list')
+    if 'user' in request.session and request.session['user'] == 'himani.bhatnagar@gmail.com':
+        if request.method == 'POST':
+            gid = request.POST.getlist('groupid')
+            print(gid)
+            return HttpResponseRedirect('/student_list')
+        else:
+            print(groupname)
+            students = get_students_from_group(groupname)
+            print(students)
+            return render(request, 'student_list.html', context={"sl": students})
+
     else:
-        print(groupname)
-        students = get_students_from_group(groupname)
-        print(students)
-        return render(request, 'student_list.html', context={"sl": students})
+        raise Http404
 
 
 def creategrp(request):
-    if 'user' in request.session:
-        if request.method == "POST":
-            name = request.POST['name']
-            desc = request.POST['desc']
-            time = request.POST['time']
-            day = request.POST['day']
-            create_group(name=name, desc=desc, time=time, day=day)
-            return HttpResponseRedirect("/admin_login")
-        else:
-            return render(request, 'create_group.html')
+    if 'user' in request.session and request.session['user'] == 'himani.bhatnagar@gmail.com':
+        if 'user' in request.session:
+            if request.method == "POST":
+                name = request.POST['name']
+                desc = request.POST['desc']
+                time = request.POST['time']
+                day = request.POST['day']
+                create_group(name=name, desc=desc, time=time, day=day)
+                return HttpResponseRedirect("/admin_login")
+            else:
+                return render(request, 'create_group.html')
+
+    else:
+        raise Http404
 
 
 def login(request):
