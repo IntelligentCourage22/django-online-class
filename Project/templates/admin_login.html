@@ -138,43 +138,45 @@
   <center>
     <h1>Existing group list</h1>
   </center>
-  <table id="tabla">
+  <div style="overflow-x:auto;">
+    <table id="tabla">
 
-    <tr>
-      <th>Id:</th>
-      {% for groupid in gi %}
-      <td>{{groupid}}</td>
-      {% endfor %}
+      <tr>
+        <th>Id:</th>
+        {% for groupid in gi %}
+        <td>{{groupid}}</td>
+        {% endfor %}
 
-    </tr>
-    <tr>
-      <th> Name: </th>
-      {% for groupnames in gn %}
-      <td>{{groupnames}}</td>
-      {% endfor %}
+      </tr>
+      <tr>
+        <th> Name: </th>
+        {% for groupnames in gn %}
+        <td>{{groupnames}}</td>
+        {% endfor %}
 
-    </tr>
-    <tr>
-      <th>Description:</th>
-      {% for groupdesc in gd %}
-      <td>{{groupdesc}}</td>
-      {% endfor %}
-    </tr>
-    <tr>
-      <th>Time:</th>
-      {% for grouptime in gt %}
-      <td>{{grouptime}}</td>
-      {% endfor %}
-    </tr>
-    <tr>
-      <th>Day:</th>
-      {% for groupday in gday %}
-      <td>{{groupday}}</td>
-      {% endfor %}
-    </tr>
+      </tr>
+      <tr>
+        <th>Description:</th>
+        {% for groupdesc in gd %}
+        <td>{{groupdesc}}</td>
+        {% endfor %}
+      </tr>
+      <tr>
+        <th>Time:</th>
+        {% for grouptime in gt %}
+        <td>{{grouptime}}</td>
+        {% endfor %}
+      </tr>
+      <tr>
+        <th>Day:</th>
+        {% for groupday in gday %}
+        <td>{{groupday}}</td>
+        {% endfor %}
+      </tr>
 
 
-  </table>
+    </table>
+  </div>
   <br><br><br><br><br>
   <a href="{% url 'group_list' %}"><button type="submit" class="button" id="btndisclaimer">Student List</button>
   </a>
