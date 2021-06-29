@@ -77,6 +77,23 @@
     </div>
   </div>
 
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>ITEM NAME</>
+        <th>QUANTITY IN STORE</th>
+      </tr>
+    </thead>
+    {% for instance in queryset %}
+    <tr>
+      <td>{{forloop.counter}}</td>
+      <td>{{instance.category}}</td>
+      <td>{{instance.item_name}}</td>
+      <td>{{instance.quantity}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
 
   <script>
     var curday;

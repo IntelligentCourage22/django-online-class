@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib import messages
 from .db_operations import *
 from django.http import Http404
+from .models import *
+
 """git init
 git add README.md
 git commit -m "first commit"
@@ -186,11 +188,4 @@ def logout(request):
 
 
 def about(request):
-
-    if request.method == "POST":
-        name = request.POST['fname']
-        pw = request.POST['lname']
-        print(f'"Username: " {name}, Password: {pw}')
-        return HttpResponseRedirect('/')
-    else:
-        return render(request, 'index1.html', )
+    return render(request, 'index1.html')

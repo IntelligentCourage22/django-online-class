@@ -3,21 +3,6 @@
 
 <body>
   <style>
-    table,
-    th,
-    td {
-      border: 1px solid black;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    /* Button used to open the contact form - fixed at the bottom of the page */
     .open-button {
       background-color: #555;
       color: white;
@@ -31,62 +16,8 @@
       width: 280px;
     }
 
-    /* The popup form - hidden by default */
-    .form-popup {
-      display: none;
-      position: fixed;
-      bottom: 0;
-      right: 15px;
-      border: 3px solid #f1f1f1;
-      z-index: 9;
-    }
-
-    /* Add styles to the form container */
-    .form-container {
-      max-width: 300px;
-      padding: 10px;
-      background-color: white;
-    }
-
-    /* Full-width input fields */
-    .form-container input[type=text],
-    .form-container input[type=password] {
-      width: 100%;
-      padding: 15px;
-      margin: 5px 0 22px 0;
-      border: none;
-      background: #f1f1f1;
-    }
-
-    /* When the inputs get focus, do something */
-    .form-container input[type=text]:focus,
-    .form-container input[type=password]:focus {
-      background-color: #ddd;
-      outline: none;
-    }
-
-    /* Set a style for the submit/login button */
-    .form-container .btn {
-      background-color: #04AA6D;
-      color: white;
-      padding: 16px 20px;
-      border: none;
-      cursor: pointer;
-      width: 100%;
-      margin-bottom: 10px;
-      opacity: 0.8;
-    }
-
-    /* Add a red background color to the cancel button */
-    .form-container .cancel {
-      background-color: red;
-    }
-
-    /* Add some hover effects to buttons */
-    .form-container .btn:hover,
-    .open-button:hover {
-      opacity: 1;
-    }
+    /*  
+    
 
     #ctable {
       font-family: Arial, Helvetica, sans-serif;
@@ -117,11 +48,8 @@
       color: white;
     }
 
-    table.center {
-      margin-left: auto;
-      margin-right: auto;
-    }
-
+    
+*/
     .button {
       background-color: #4CAF50;
       border: none;
@@ -140,8 +68,77 @@
       right: 100;
       bottom: 0;
     }
+
+
+    body {
+      font-size: 20px;
+      font-family: monospace;
+    }
+
+    table {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    tbody {
+      display: flex;
+      width: 800px;
+      position: relative;
+      align-items: stretch;
+      border: 1px solid black;
+
+    }
+
+    tr {
+      flex-basis: 33.33333333%;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      padding: 5px 10px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    tr:hover {
+      background-color: #ddd;
+    }
+
+    tr+tr {
+      border-left: 1px solid black;
+    }
+
+    th,
+    td {
+      flex-basis: 100%;
+      text-align: left;
+      display: flex;
+
+      border: 1px solid #ddd;
+      padding: 8px;
+
+
+    }
+
+    th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #04AA6D;
+      color: white;
+    }
+
+    */
   </style>
-  <table id="ctable" class="center">
+  <br><br>
+  <center>
+    <h1>Existing group list</h1>
+  </center>
+  <table id="tabla">
 
     <tr>
       <th>Id:</th>
@@ -151,7 +148,7 @@
 
     </tr>
     <tr>
-      <th>Name:</th>
+      <th> Name: </th>
       {% for groupnames in gn %}
       <td>{{groupnames}}</td>
       {% endfor %}

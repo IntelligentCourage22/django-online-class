@@ -1,41 +1,6 @@
-d = None
-ansh = 0
-if ansh < 1:
-    d = 'lolo'
-else:
-    print(d)
+from django.db import models
 
 
-# l
-# l
-# l
-# l
-# l
-# l
-# l
-# l
-# l
-# l
-# l
-# l
-# l
-# l
-# l
-# l
-# l
-# l
-# l
-
-# l
-# l
-# l
-# l
-# l
-# l
-# l
-# l
-# l
-# l
-# l
-# l
-# l
+class Person(models.Model):
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
