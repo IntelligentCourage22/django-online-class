@@ -224,6 +224,52 @@ def update_teacher():
     pass
 
 
+class GroupInformation:
+    def get_grouptime(email):
+        statement = f"SELECT groupid FROM student WHERE email='{email}';"
+        db.execute(statement)
+        confirm = str(db.fetchall())
+        characters_to_remove = "[('',)]"
+        new_string = confirm
+        for character in characters_to_remove:
+            new_string = new_string.replace(character, "")
+        statement2 = f"SELECT time FROM groupS WHERE groupname='{new_string}';"
+        db.execute(statement2)
+        confirmtime = str(db.fetchall())
+        characters_to_remove = "[('',)]"
+        time = confirmtime
+        for character in characters_to_remove:
+            time = time.replace(character, "")
+        return time
+
+    def get_groupday(email):
+        statement = f"SELECT groupid FROM student WHERE email='{email}';"
+        db.execute(statement)
+        confirm = str(db.fetchall())
+        characters_to_remove = "[('',)]"
+        new_string = confirm
+        for character in characters_to_remove:
+            new_string = new_string.replace(character, "")
+        statement2 = f"SELECT day FROM groupS WHERE groupname='{new_string}';"
+        db.execute(statement2)
+        confirmtime = str(db.fetchall())
+        characters_to_remove = "[('',)]"
+        day = confirmtime
+        for character in characters_to_remove:
+            day = day.replace(character, "")
+        days = {"Sunday": 0,
+                "Monday": 1,
+                "Tuesday": 2,
+                "Wednesday": 3,
+                "Thursday": 4,
+                "Friday": 5,
+                "Saturday": 6, }
+        return days[day]
+
+
+print(GroupInformation.get_groupday('ansh.020207@gmail.com'))
+
+
 class Information:
     def __init__(self, name, email, password, phone, group):
         self.name = name

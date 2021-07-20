@@ -85,8 +85,8 @@
 
     function getSeconds() {
       var nowDate = new Date();
-      var dy = 2;
-      var countertime = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 14, 49, 0);
+      var dy = Number("{{day}}");
+      var countertime = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), Number("{{hour}}"), Number("{{minute}}"), 0);
 
       var curtime = nowDate.getTime();
       var atime = countertime.getTime();
@@ -98,7 +98,9 @@
         console.log('yay');
       }
       if (diff <= 0) { diff += (86400 * 7) }
+
       startTimer(diff);
+
     }
 
     function startTimer(secs) {
@@ -127,6 +129,7 @@
       document.getElementById("hours").innerHTML = ((hours < 10) ? "0" : "") + hours;
       document.getElementById("minutes").innerHTML = ((mins < 10) ? "0" : "") + mins;
       document.getElementById("seconds").innerHTML = ((secs < 10) ? "0" : "") + secs;
+
     }
 
     $(document).ready(function () {
