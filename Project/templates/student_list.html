@@ -1,85 +1,377 @@
 <!DOCTYPE html>
 <html>
 <style>
-/* The container */
-.container {
-  display: block;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
-  cursor: pointer;
-  font-size: 22px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
+  /* The container */
+  .container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
 
-/* Hide the browser's default checkbox */
-.container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
+  /* Hide the browser's default checkbox */
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
 
-/* Create a custom checkbox */
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
-}
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+  }
 
-/* On mouse-over, add a grey background color */
-.container:hover input ~ .checkmark {
-  background-color: #ccc;
-}
+  /* On mouse-over, add a grey background color */
+  .container:hover input~.checkmark {
+    background-color: #ccc;
+  }
 
-/* When the checkbox is checked, add a blue background */
-.container input:checked ~ .checkmark {
-  background-color: #2196F3;
-}
+  /* When the checkbox is checked, add a blue background */
+  .container input:checked~.checkmark {
+    background-color: #2196F3;
+  }
 
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
 
-/* Show the checkmark when checked */
-.container input:checked ~ .checkmark:after {
-  display: block;
-}
+  /* Show the checkmark when checked */
+  .container input:checked~.checkmark:after {
+    display: block;
+  }
 
-/* Style the checkmark/indicator */
-.container .checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
+  /* Style the checkmark/indicator */
+  .container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
 </style>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html {
+      box-sizing: border-box;
+      height: 100%;
+      font-size: 10px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: inherit;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: "Lato", sans-serif;
+      background: #2f2f2f;
+    }
+
+    h2 {
+      font-size: 3rem;
+      font-weight: bold;
+      margin: 0 0 3rem;
+    }
+
+    .bulgy-radios {
+      width: 38rem;
+      background: #fff;
+      padding: 3rem 0 3rem 5rem;
+      border-radius: 1rem;
+    }
+
+    .bulgy-radios label {
+      display: block;
+      position: relative;
+      height: 1em;
+      padding-left: 4rem;
+      margin-bottom: 1.75rem;
+      cursor: pointer;
+      font-size: 2.5rem;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      color: #555;
+      letter-spacing: 1px;
+    }
+
+    .bulgy-radios label:hover input:not(:checked)~.radio {
+      opacity: 0.8;
+    }
+
+    .bulgy-radios .label {
+      display: flex;
+      align-items: center;
+      padding-right: 3rem;
+    }
+
+    .bulgy-radios .label span {
+      line-height: 1em;
+    }
+
+    .bulgy-radios input {
+      position: absolute;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+      left: -2000px;
+    }
+
+    .bulgy-radios input:checked~.radio {
+      background-color: #0ac07d;
+      transition: background 0.3s;
+    }
+
+    .bulgy-radios input:checked~.radio::after {
+      opacity: 1;
+    }
+
+    .bulgy-radios input:checked~.label {
+      color: #0bae72;
+    }
+
+    .bulgy-radios input:checked~.label span {
+      -webkit-animation: bulge 0.5s forwards;
+      animation: bulge 0.5s forwards;
+    }
+
+    .bulgy-radios input:checked~.label span:nth-child(1) {
+      -webkit-animation-delay: 0.025s;
+      animation-delay: 0.025s;
+    }
+
+    .bulgy-radios input:checked~.label span:nth-child(2) {
+      -webkit-animation-delay: 0.05s;
+      animation-delay: 0.05s;
+    }
+
+    .bulgy-radios input:checked~.label span:nth-child(3) {
+      -webkit-animation-delay: 0.075s;
+      animation-delay: 0.075s;
+    }
+
+    .bulgy-radios input:checked~.label span:nth-child(4) {
+      -webkit-animation-delay: 0.1s;
+      animation-delay: 0.1s;
+    }
+
+    .bulgy-radios input:checked~.label span:nth-child(5) {
+      -webkit-animation-delay: 0.125s;
+      animation-delay: 0.125s;
+    }
+
+    .bulgy-radios input:checked~.label span:nth-child(6) {
+      -webkit-animation-delay: 0.15s;
+      animation-delay: 0.15s;
+    }
+
+    .bulgy-radios input:checked~.label span:nth-child(7) {
+      -webkit-animation-delay: 0.175s;
+      animation-delay: 0.175s;
+    }
+
+    .bulgy-radios input:checked~.label span:nth-child(8) {
+      -webkit-animation-delay: 0.2s;
+      animation-delay: 0.2s;
+    }
+
+    .bulgy-radios input:checked~.label span:nth-child(9) {
+      -webkit-animation-delay: 0.225s;
+      animation-delay: 0.225s;
+    }
+
+    .bulgy-radios input:checked~.label span:nth-child(10) {
+      -webkit-animation-delay: 0.25s;
+      animation-delay: 0.25s;
+    }
+
+    .bulgy-radios input:checked~.label span:nth-child(11) {
+      -webkit-animation-delay: 0.275s;
+      animation-delay: 0.275s;
+    }
+
+    .bulgy-radios input:checked~.label span:nth-child(12) {
+      -webkit-animation-delay: 0.3s;
+      animation-delay: 0.3s;
+    }
+
+    .bulgy-radios input:checked~.label span:nth-child(13) {
+      -webkit-animation-delay: 0.325s;
+      animation-delay: 0.325s;
+    }
+
+    .bulgy-radios input:checked~.label span:nth-child(14) {
+      -webkit-animation-delay: 0.35s;
+      animation-delay: 0.35s;
+    }
+
+    .bulgy-radios input:checked~.label span:nth-child(15) {
+      -webkit-animation-delay: 0.375s;
+      animation-delay: 0.375s;
+    }
+
+    .bulgy-radios input:checked~.label span:nth-child(16) {
+      -webkit-animation-delay: 0.4s;
+      animation-delay: 0.4s;
+    }
+
+    .bulgy-radios input:checked~.label span:nth-child(17) {
+      -webkit-animation-delay: 0.425s;
+      animation-delay: 0.425s;
+    }
+
+    .bulgy-radios input:checked~.label span:nth-child(18) {
+      -webkit-animation-delay: 0.45s;
+      animation-delay: 0.45s;
+    }
+
+    .bulgy-radios input:checked~.label span:nth-child(19) {
+      -webkit-animation-delay: 0.475s;
+      animation-delay: 0.475s;
+    }
+
+    .radio {
+      position: absolute;
+      top: 0.2rem;
+      left: 0;
+      height: 2.5rem;
+      width: 2.5rem;
+      background: #c9ded6;
+      border-radius: 50%;
+    }
+
+    .radio::after {
+      content: "";
+      position: absolute;
+      opacity: 0;
+      top: 0.5rem;
+      left: 0.5rem;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    @-webkit-keyframes bulge {
+      50% {
+        transform: rotate(4deg);
+        font-size: 1.5em;
+        font-weight: bold;
+      }
+
+      100% {
+        transform: rotate(0);
+        font-size: 1em;
+        font-weight: bold;
+      }
+    }
+
+    @keyframes bulge {
+      50% {
+        transform: rotate(4deg);
+        font-size: 1.5em;
+        font-weight: bold;
+      }
+
+      100% {
+        transform: rotate(0);
+        font-size: 1em;
+        font-weight: bold;
+      }
+    }
+
+    .button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
 <body>
+  <form action="" method="POST">
+    {% csrf_token %}
+    <div class="bulgy-radios" role="radiogroup" aria-labelledby="bulgy-radios-label">
+      <h2 id="bulgy-radios-label">Students in {{ groupn }}</h2>
+      {% for students in sl %}
+      <label>
+        <input type="checkbox" id="{{groupid}}" name="{{groupid}}" value="student" />
+        <span class="radio"></span>
+        <span class="label">{{students}}</span>
+      </label>
+      {% endfor %}
+    </div>
+    <br><br><br><br>
 
-<h1>Students in {{ groupn }}</h1>
 
-<form action="" method="POST">
-{% for students in sl %}
-<input type="checkbox" id="{{groupid}}" name="{{groupid}}" value="student">
-<label for="vehicle1">{{ students }}</label><br>
-{% endfor %}
-<input type="submit" name="submit">
-</form>
+
+
+
+
+    <input type="submit" class="button" value="Submit">
+  </form>
 
 </body>
+
+</html>
+
+<body>
+
+  <form action="" method="POST">
+
+  </form>
+  <script>
+    const labels = document.querySelectorAll('.label');
+    labels.forEach(label => {
+      const chars = label.textContent.split('');
+      label.innerHTML = '';
+      chars.forEach(char => {
+        label.innerHTML += `<span>${char === ' ' ? '&nbsp' : char}</span>`;
+      });
+    })
+  </script>
+</body>
+
 </html>

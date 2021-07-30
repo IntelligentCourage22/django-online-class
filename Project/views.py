@@ -141,7 +141,7 @@ def student_list(request, groupname):
         print(groupname)
         students = get_students_from_group(groupname)
         print(students)
-        return render(request, 'student_list.html', context={"sl": students})
+        return render(request, 'student_list.html', context={"sl": students , "groupn": groupname})
 
 
 @admin_required

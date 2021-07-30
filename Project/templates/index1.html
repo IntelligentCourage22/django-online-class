@@ -58,6 +58,24 @@
       padding-top: 5px;
       font-size: 16px;
     }
+
+    .image-preview {
+      width: 500px;
+      min-height: 500px;
+      border: 2px solid #dddddd;
+      margin-top: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #cccccc;
+
+    }
+
+    .image-preview__image {
+      display: none;
+      width: 100%;
+    }
   </style>
 </head>
 
@@ -76,6 +94,41 @@
       <div class="smalltext">Seconds</div>
     </div>
   </div>
+
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
+
+  <h1>Image preview</h1>
+  <input type="file" name="inpFile" id="inpFile">
+  <div class="image-preview" id="imagePreview">
+    <img src="" alt="Image Preview" class="image-preview__image">
+    <span class="image-preview__default-text">Image preview</span>
+  </div>
+
+
+  <script>
+    const inpFile = document.getElementById("inpFile");
+    const previewContainer = document.getElementById("imagePreview");
+    const previewImage = previewContainer.querySelector(".image-preview__image")
+    const previewDefaultText = previewContainer.querySelector(".image-preview__default-text")
+
+    inpFile.addEventListener("change", function () {
+      const file = this.files[0];
+      console.log(file);
+
+      if (file) {
+        const reader = new FileReader();
+        previewDefaultText.style.display = "none";
+        previewImage.style.display = "block";
+
+        reader.addEventListener("load", function () {
+          console.log(this);
+          previewImage.setAttribute("src", this.result);
+        });
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
 
 
   <script>
@@ -135,7 +188,10 @@
     $(document).ready(function () {
       getSeconds();
     });
+
+
   </script>
+
 </body>
 
 </html>
