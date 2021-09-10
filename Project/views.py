@@ -4,12 +4,6 @@ from .db_operations import *
 from django.http import Http404
 from .models import *
 
-"""git init
-git add README.md
-git commit -m "first commit"
-git remote add origin 
-git push -u origin master"""
-
 
 def login_required(function):
     def wrapper(request, *args, **kw):
@@ -134,14 +128,14 @@ def group_list(request):
 @admin_required
 def student_list(request, groupname):
     if request.method == 'POST':
-        gid = request.POST.getlist('groupid')
+        gid = request.POST.getlist('students')
         print(gid)
-        return HttpResponseRedirect('/student_list')
+        return HttpResponseRedirect('/')
     else:
-        print(groupname)
+        # print(groupname)
         students = get_students_from_group(groupname)
-        print(students)
-        return render(request, 'student_list.html', context={"sl": students , "groupn": groupname})
+ #       print(students)
+        return render(request, 'student_list.html', context={"sl": students, "groupn": groupname})
 
 
 @admin_required
@@ -180,7 +174,7 @@ def login(request):
 def home(request):
     if 'user' in request.session:
         cuser = request.session['user']
-        cur_user = Information.name(cuser)
+        cur_user = Information.find("name", cuser)
         current_user = traverse(cur_user)
         return render(request, 'index.html', context={"current_user": current_user})
     else:

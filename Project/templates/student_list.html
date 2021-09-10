@@ -15,7 +15,6 @@
     user-select: none;
   }
 
-  /* Hide the browser's default checkbox */
   .container input {
     position: absolute;
     opacity: 0;
@@ -24,7 +23,6 @@
     width: 0;
   }
 
-  /* Create a custom checkbox */
   .checkmark {
     position: absolute;
     top: 0;
@@ -34,29 +32,24 @@
     background-color: #eee;
   }
 
-  /* On mouse-over, add a grey background color */
   .container:hover input~.checkmark {
     background-color: #ccc;
   }
 
-  /* When the checkbox is checked, add a blue background */
   .container input:checked~.checkmark {
     background-color: #2196F3;
   }
 
-  /* Create the checkmark/indicator (hidden when not checked) */
   .checkmark:after {
     content: "";
     position: absolute;
     display: none;
   }
 
-  /* Show the checkmark when checked */
   .container input:checked~.checkmark:after {
     display: block;
   }
 
-  /* Style the checkmark/indicator */
   .container .checkmark:after {
     left: 9px;
     top: 5px;
@@ -337,7 +330,7 @@
       <h2 id="bulgy-radios-label">Students in {{ groupn }}</h2>
       {% for students in sl %}
       <label>
-        <input type="checkbox" id="{{groupid}}" name="{{groupid}}" value="student" />
+        <input type="checkbox" id="groupid" name="{{groupn}}" value="{{students}}" />
         <span class="radio"></span>
         <span class="label">{{students}}</span>
       </label>
@@ -353,25 +346,18 @@
     <input type="submit" class="button" value="Submit">
   </form>
 
-</body>
 
-</html>
-
-<body>
-
-  <form action="" method="POST">
-
-  </form>
-  <script>
-    const labels = document.querySelectorAll('.label');
-    labels.forEach(label => {
-      const chars = label.textContent.split('');
-      label.innerHTML = '';
-      chars.forEach(char => {
-        label.innerHTML += `<span>${char === ' ' ? '&nbsp' : char}</span>`;
-      });
-    })
-  </script>
-</body>
+  <body>
+    <script>
+      const labels = document.querySelectorAll('.label');
+      labels.forEach(label => {
+        const chars = label.textContent.split('');
+        label.innerHTML = '';
+        chars.forEach(char => {
+          label.innerHTML += `<span>${char === ' ' ? '&nbsp' : char}</span>`;
+        });
+      })
+    </script>
+  </body>
 
 </html>

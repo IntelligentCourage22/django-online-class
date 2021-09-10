@@ -1,5 +1,4 @@
 import sqlite3
-from django.contrib.auth import authenticate
 
 try:
     con = sqlite3.connect(
@@ -89,7 +88,7 @@ def login_student(password, email):
     new_string = confirm
     for character in characters_to_remove:
         new_string = new_string.replace(character, "")
-    print(new_string)
+
     if new_string == password:
         return True
     else:
@@ -105,7 +104,7 @@ def login_teacher(password, email):
     new_string = confirm
     for character in characters_to_remove:
         new_string = new_string.replace(character, "")
-    print(new_string)
+
     if new_string == password:
         return True
     else:
@@ -267,9 +266,6 @@ class GroupInformation:
         return days[day]
 
 
-print(GroupInformation.get_groupday('ansh.020207@gmail.com'))
-
-
 class Information:
     def __init__(self, name, email, password, phone, group):
         self.name = name
@@ -278,44 +274,8 @@ class Information:
         self.password = password
         self.group = group
 
-    def name(email):
-        statement = f"SELECT name FROM student WHERE email='{email}';"
-        db.execute(statement)
-        db.execute(statement)
-        confirm = str(db.fetchall())
-        characters_to_remove = "[('',)]"
-        new_string = confirm
-        for character in characters_to_remove:
-            new_string = new_string.replace(character, "")
-        li = list(new_string.split(" "))
-        return(li)
-
-    def password(email):
-        statement = f"SELECT password FROM student WHERE email='{email}';"
-        db.execute(statement)
-        db.execute(statement)
-        confirm = str(db.fetchall())
-        characters_to_remove = "[('',)]"
-        new_string = confirm
-        for character in characters_to_remove:
-            new_string = new_string.replace(character, "")
-        li = list(new_string.split(" "))
-        return(li)
-
-    def phone(email):
-        statement = f"SELECT number FROM student WHERE email='{email}';"
-        db.execute(statement)
-        db.execute(statement)
-        confirm = str(db.fetchall())
-        characters_to_remove = "[('',)]"
-        new_string = confirm
-        for character in characters_to_remove:
-            new_string = new_string.replace(character, "")
-        li = list(new_string.split(" "))
-        return(li)
-
-    def group(email):
-        statement = f"SELECT groupid FROM student WHERE email='{email}';"
+    def find(arg1, email):
+        statement = f"SELECT {arg1} FROM student WHERE email='{email}';"
         db.execute(statement)
         db.execute(statement)
         confirm = str(db.fetchall())
