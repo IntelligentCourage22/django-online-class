@@ -219,6 +219,12 @@ def update_student():
     pass
 
 
+def delete_student():
+    statement = f"DELETE FROM student WHERE name='dds';"
+    db.execute(statement)
+    print("done")
+
+
 def update_teacher():
     pass
 

@@ -196,3 +196,8 @@ def about(request):
     hour = grouptime[0]
     minute = grouptime[1]
     return render(request, 'index1.html', context={"hour": int(hour), "minute": int(minute), "day": int(groupday)})
+
+
+@login_required
+def delete_profile(request):
+    cuser = request.session['user']
