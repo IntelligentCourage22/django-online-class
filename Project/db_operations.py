@@ -6,6 +6,16 @@ try:
     print("success")
 except:
     pass
+"""
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS users (
+    user_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    email TEXT UNIQUE NOT NULL,
+    password TEXT NOT NULL
+)
+''')
+"""
+
 
 db = con.cursor()
 #db.execute("CREATE TABLE teacher(name text , password text, email varchar,number INTEGER PRIMARY KEY,admin BOOLEAN CHECK (admin IN (0, 1)))")
