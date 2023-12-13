@@ -1,167 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
+    <link rel="stylesheet" href="styles.css">
     <style>
         body {
-            background-color: #1C2833;
-        }
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
 
-        *:focus {
-            outline: none;
-        }
+.container {
+    width: 350px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-        .box {
-            box-sizing: border-box;
-            width: 153px;
-            height: 153px;
-            border: 2px solid #3498db;
-            box-shadow: -3px -3px 7px #ffffff73,
-                3px 3px 5px rgba(94, 104, 121, 0.288);
-            border-radius: 50%;
-            background-color: black;
-            margin-top: 50px;
-            overflow: hidden;
-            transition: all 1s;
-        }
+form {
+    display: flex;
+    flex-direction: column;
+}
 
-        .box:hover {
-            width: 360px;
-            height: 600px;
-            border-radius: 5px;
-        }
+label {
+    margin-bottom: 5px;
+}
 
-        img {
-            box-sizing: border-box;
-            width: 149px;
-            height: 149px;
-            border-radius: 50%;
-            margin: 0;
-            border: 5px solid #0082e6;
-            padding: 3px;
-            background-color: white;
-            overflow: hidden;
-            transition: all 1s;
+input {
+    padding: 8px;
+    margin-bottom: 10px;
+}
 
-        }
+button {
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
 
-        .box:hover img {
-            width: 100px;
-            height: 100px;
-            margin: 20px 35%;
-        }
+button:hover {
+    background-color: #45a049;
+}
 
-        hr {
-            width: 500px;
-            line-height: 20px;
-            margin: 10px 10px 10px 10px;
-        }
+.error-message {
+    color: #ff0000;
+    margin-top: 5px;
+}
 
-        input[type="text"],
-        input[type="email"],
-        input[type="number"] {
-            display: block;
-            box-sizing: border-box;
-            color: #3498db;
-            margin-bottom: 30px;
-            padding: 4px;
-            width: 220px;
-            height: 32px;
-            border: none;
-            border-bottom: 1px solid #0082e6;
-            font-family: 'Roboto', sans-serif;
-            font-weight: 400;
-            font-size: 15px;
-            transition: 0.2s ease;
-            background: none;
-        }
-
-        input[type="text"] {
-            margin-top: 25px;
-        }
-
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="number"]:focus {
-            border-bottom: 2px solid #3498db;
-            border-bottom-right-radius: 20px;
-            color: #3498db;
-            transition: 0.2s ease;
-            background: black;
-            border-top: none;
-        }
-
-
-        button {
-            border: 1px solid #3498db;
-            background-color: black;
-            color: white;
-            height: 30px;
-            width: 100px;
-            border-radius: 5px;
-            left: 0;
-            margin: 0px;
-            transition: all .3s;
-        }
-
-        button:hover {
-            transform: scale(1.1);
-            background-color: #566573;
-        }
-
-        input[type="file"] {
-            display: none;
-        }
-
-        label {
-            box-sizing: border-box;
-            width: 40px;
-            height: 20px;
-            background-color: black;
-            color: white;
-            border: 1px solid #3498db;
-            background-color: black;
-            color: white;
-            padding: 4px;
-            border-radius: 2px;
-        }
-
-        label:hover {
-            background-color: #566573;
-            transform: scale(1.1);
-        }
     </style>
+    <title>Signup Form</title>
 </head>
-
 <body>
-    <center>
-        <div class="box">
+    <div class="container">
+        <form id="signupForm">
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
 
-            <input type="file" id="file" name="image">
-            <img src="pic22.jpg" width="100%" height="100%">
-            <label for="file">EDIT PIC</label>
+            <label for="username">Username:</label>
+            <input type="text" id="username" required>
 
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
 
+            <label for="confirmPassword">Re-enter Password:</label>
+            <input type="password" id="confirmPassword" required>
 
-            <input type="text" placeholder="User Name" name="">
-            <input type="Email" placeholder="Email ID" name="">
-            <input type="number" placeholder="Phone Number" name="">
-            <input type="text" placeholder="Date of Birth" name="">
-            <input type="text" name="" placeholder="Gender">
+            <button type="button" onclick="validateForm()">Sign Up</button>
 
-            <button style="float: left;margin: 10px 0 0 18.2%;">CANCEL</button>
+            <p class="error-message" id="error-message"></p>
+        </form>
+    </div>
 
-            <button name="done" style="float: right;margin:10px 18.2% 0 0;">DONE</button>
+    <script src="script.js">
+        function validateForm() {
+    var email = document.getElementById('email').value;
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+    var confirmPassword = document.getElementById('confirmPassword').value;
 
-        </div>
+    // Check for empty values
+    if (email === "" || username === "" || password === "" || confirmPassword === "") {
+        displayError("All fields are required");
+        return;
+    }
 
+    // Email validation using a simple regex pattern
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        displayError("Invalid email address");
+        return;
+    }
 
-    </center>
+    if (password !== confirmPassword) {
+        displayError("Passwords do not match!");
+        return;
+    }
+
+    // If everything is valid, you can submit the form or perform other actions
+    alert("Signup successful!\nEmail: " + email + "\nUsername: " + username);
+}
+
+function displayError(message) {
+    var errorElement = document.getElementById('error-message');
+    errorElement.textContent = message;
+}
+
+    </script>
 </body>
-
 </html>
